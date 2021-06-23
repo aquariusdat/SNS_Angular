@@ -1,0 +1,29 @@
+<div class="col-12">
+    <h1>Add new</h1>
+</div>
+<div class="col-12">
+    <form>
+        <div class="form-group mt-3">
+            <label for="name">ID</label>
+            <input type="text" class="form-control" id="ID" placeholder="Enter ID" [(ngModel)]="id" name="id">
+        </div>
+        <div class="form-group mt-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" [(ngModel)]="name" name="name">
+        </div>
+        <div class="form-group mt-3">
+            <label for="level">Level</label>
+            <select name="level" id="level" class="form-control" [(ngModel)]="level" name="level">
+                <option value=""></option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+        <div class="form-check mt-3">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="isDone" [(ngModel)]="isDone">
+            <label class="form-check-label" for="exampleCheck1">is done ?</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" (click)="addTodo()">Submit</button>
+    </form>
+</div>
