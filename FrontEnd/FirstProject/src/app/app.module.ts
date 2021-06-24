@@ -7,10 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormTodoAddComponent } from './form-todo-add/form-todo-add.component';
 import { FormTodoEditComponent } from './form-todo-edit/form-todo-edit.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
   { path: 'home', component: TodoListComponent },
   { path: 'edit/:id', component: FormTodoEditComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: TodoListComponent },
 ];
 
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
     AppComponent,
     TodoListComponent,
     FormTodoAddComponent,
-    FormTodoEditComponent
+    FormTodoEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

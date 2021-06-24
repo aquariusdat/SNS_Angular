@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserLogin } from '../models/Auth/UserLogin';
+import { Router, ActivatedRoute, ParamMap, ActivationEnd } from '@angular/router';
 @Component({
   selector: 'app-form-todo-add',
   templateUrl: './form-todo-add.component.html',
@@ -8,20 +10,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FormTodoAddComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivationEnd, private router: Router) { }
 
   public name = '';
   public id = 0;
   public level = '';
   public isDone = false;
+
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
   }
 
-
   ngOnInit(): void {
+
   }
 
   public addTodo(): void {

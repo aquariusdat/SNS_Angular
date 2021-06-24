@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyFirstAPI.Models;
 using MyFirstAPI.Repository;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 namespace MyFirstAPI.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Authorize]
+    [Route("api/v1/todos")]
     public class TodoController : Controller
     {
         private readonly ITodoRepo _todoRepo;
@@ -38,6 +40,7 @@ namespace MyFirstAPI.Controllers
         }
 
         //POST api/v1/todos
+
         [HttpPost]
         public async Task<ActionResult> AddTodo([FromForm] Todo todo)
         {
