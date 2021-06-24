@@ -15,19 +15,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let todo of todos">
+                    <tr *ngFor="let todo of todos" [ngClass]="{todoIsDone: todo.isDone === true}">
                         <th scope="row">{{todo.id}}</th>
                         <td>{{todo.name}}</td>
                         <td>{{todo.level}}</td>
                         <td>{{todo.isDone}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" style="margin: 0 5px 0 5px">Detail</button>
-                            <button type="button" class="btn btn-success" style="margin: 0 5px 0 5px"><a
+                            <button type="button" class="btn btn-primary"
+                                style="margin: 0 5px 0 5px; z-index: 2;">Detail</button>
+                            <button type="button" class="btn btn-success" style="margin: 0 5px 0 5px; z-index: 2;"><a
                                     [routerLink]="['/edit', todo.id]" routerLinkActive="active"
                                     style="text-decoration: none; color:white;">Edit</a>
                             </button>
                             <button type="button" class="btn btn-danger" (click)="deleteTodo(todo.id)"
-                                style="margin: 0 5px 0 5px">Delete</button>
+                                style="margin: 0 5px 0 5px; z-index: 2;">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -40,7 +41,7 @@
             <form>
                 <div class="form-group mt-3">
                     <label for="name">ID</label>
-                    <input type="text" class="form-control" id="ID" placeholder="Enter ID" [(ngModel)]="id" name="id">
+                    <input type="number" class="form-control" id="ID" placeholder="Enter ID" [(ngModel)]="id" name="id">
                 </div>
                 <div class="form-group mt-3">
                     <label for="name">Name</label>

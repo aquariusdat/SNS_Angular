@@ -10,15 +10,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TodoListComponent implements OnInit {
 
-
+  // List todo, get data from API
   public todos: ITodo[] = [
 
   ]
 
+  // Form add
   public name = '';
   public id = 0;
   public level = '';
   public isDone = false;
+
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -40,6 +43,11 @@ export class TodoListComponent implements OnInit {
   }
 
   public deleteTodo(_id: number): void {
+
+    if (!confirm('Are u wanna delete this todo ?')) {
+      return;
+    }
+
     const url = `https://localhost:44332/api/v1/todos/${_id}`
     this.http.delete(url).subscribe((data) => {
       let result: any = {};
@@ -54,6 +62,14 @@ export class TodoListComponent implements OnInit {
   }
 
   public addTodo(): void {
+    console.log(`ID: ${this.id}, Name: ${this.name}, Level: ${this.level}, Is done?: ${this.isDone}`)
+
+    // check form data;
+    let result = this.checkFormData();
+    if (!result) {
+      return;
+    }
+
     const formData: any = new FormData();
     formData.append("Id", this.id);
     formData.append("Name", this.name);
@@ -75,4 +91,15 @@ export class TodoListComponent implements OnInit {
     })
 
   }
+
+  public checkFormData(): boolean {
+    let alertString = 'Please enter all information.';
+    if (this.id === 0 || this.id === null || this.name.length === 0 || this.level === '') {
+      alert(alertString);
+      return false;
+    }
+
+    return true;
+  }
+
 }
