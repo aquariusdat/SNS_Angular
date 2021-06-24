@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MyFirstAPI.Controllers
 {
     [ApiController]
-    [Route("api/v1/todos")]
+    [Route("api/v1/[controller]")]
     public class TodoController : Controller
     {
         private readonly ITodoRepo _todoRepo;
@@ -46,7 +46,7 @@ namespace MyFirstAPI.Controllers
             return Ok(new { isSuccess = result });
         }
 
-        //Delete api/v1/todos
+        //DELETE api/v1/todos
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTodoByID(int id)
         {
@@ -55,6 +55,7 @@ namespace MyFirstAPI.Controllers
             return Ok(new { isSuccess = result });
         }
 
+        //PUT api/v1/todos
         [HttpPut]
         public async Task<ActionResult> UpdateTodo([FromForm]Todo todo)
         {
