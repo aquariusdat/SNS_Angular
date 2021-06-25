@@ -8,6 +8,8 @@ import { FormTodoAddComponent } from './form-todo-add/form-todo-add.component';
 import { FormTodoEditComponent } from './form-todo-edit/form-todo-edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { TodoService } from './Services/Todo/todo.service';
+
 const appRoutes: Routes = [
   { path: 'home', component: TodoListComponent },
   { path: 'edit/:id', component: FormTodoEditComponent },
@@ -32,7 +34,9 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
   ],
-  providers: [],
+  providers: [
+    TodoService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
