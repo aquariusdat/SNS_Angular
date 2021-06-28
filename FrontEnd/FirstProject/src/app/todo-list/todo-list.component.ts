@@ -40,36 +40,7 @@ export class TodoListComponent implements OnInit {
 
   }
 
-  public getTodos(): void {
-    this.todoServices.checkExpired();
-    const path = 'https://localhost:44332/api/v1/todos';
-
-    this.http.get<ITodo[]>(path, this.todoServices.getHeaders()).subscribe((data) => {
-      this.todos = data;
-    });
-
-  }
-
   public deleteTodo(_id: number) {
-    // this.todoServices.checkExpired();
-    // if (!confirm('Are u wanna delete this todo ?')) {
-    //   return;
-    // }
-
-    // const url = `https://localhost:44332/api/v1/todos/${_id}`
-    // this.http.delete(url, this.todoServices.getHeaders()).subscribe((data) => {
-    //   let result: any = {};
-    //   result = data;
-
-    //   if (!result.isSuccess) {
-    //     alert(`Can not delete todo.\nPlease delete again.`)
-    //     return;
-    //   }
-    //   this.getTodos();
-    //   console.log('delete is success');
-    //   return;
-    // })
-
     this.todoServices.deleteTodo(_id);
 
     setTimeout(() => {
