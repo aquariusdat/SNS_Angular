@@ -19,7 +19,7 @@
                         <th scope="row">{{todo.id}}</th>
                         <td>{{todo.name}}</td>
                         <td>{{todo.level}}</td>
-                        <td>{{todo.isDone}}</td>
+                        <td>{{todo.isDone === true ? 'Done' : 'Not done yet'}}</td>
                         <td>
                             <button type="button" class="btn btn-primary"
                                 style="margin: 0 5px 0 5px; z-index: 2;">Detail</button>
