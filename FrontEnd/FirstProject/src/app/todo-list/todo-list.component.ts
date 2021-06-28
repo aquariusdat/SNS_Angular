@@ -51,34 +51,43 @@ export class TodoListComponent implements OnInit {
   }
 
   public deleteTodo(_id: number) {
-    this.todoServices.checkExpired();
-    if (!confirm('Are u wanna delete this todo ?')) {
-      return;
-    }
+    // this.todoServices.checkExpired();
+    // if (!confirm('Are u wanna delete this todo ?')) {
+    //   return;
+    // }
 
-    const url = `https://localhost:44332/api/v1/todos/${_id}`
-    this.http.delete(url, this.todoServices.getHeaders()).subscribe((data) => {
-      let result: any = {};
-      result = data;
+    // const url = `https://localhost:44332/api/v1/todos/${_id}`
+    // this.http.delete(url, this.todoServices.getHeaders()).subscribe((data) => {
+    //   let result: any = {};
+    //   result = data;
 
-      if (!result.isSuccess) {
-        alert(`Can not delete todo.\nPlease delete again.`)
-        return;
-      }
-      this.getTodos();
-      console.log('delete is success');
-      return;
-    })
+    //   if (!result.isSuccess) {
+    //     alert(`Can not delete todo.\nPlease delete again.`)
+    //     return;
+    //   }
+    //   this.getTodos();
+    //   console.log('delete is success');
+    //   return;
+    // })
+
+    this.todoServices.deleteTodo(_id);
+
+    setTimeout(() => {
+      this.todoServices.getTodos().subscribe((data) => {
+        this.todos = data;
+      });
+    }, 100)
+
   }
 
   public addTodo(): void {
-    this.todoServices.addTodo(this.id, this.name, this.level, this.isDone).then(() => {
+    this.todoServices.addTodo(this.id, this.name, this.level, this.isDone);
+
+    setTimeout(() => {
       this.todoServices.getTodos().subscribe((data) => {
         this.todos = data;
-      })
-    });
-
-
+      });
+    }, 100)
   }
 
 }

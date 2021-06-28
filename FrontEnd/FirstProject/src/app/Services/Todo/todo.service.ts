@@ -70,14 +70,14 @@ export class TodoService {
 
   }
 
-  public async deleteTodo(_id: number) {
+  public deleteTodo(_id: number) {
     this.checkExpired();
     if (!confirm('Are u wanna delete this todo ?')) {
       return;
     }
 
     const url = `https://localhost:44332/api/v1/todos/${_id}`
-    await this.http.delete(url, this.getHeaders()).subscribe((data) => {
+    this.http.delete(url, this.getHeaders()).subscribe((data) => {
       let result: any = {};
       result = data;
 
@@ -90,7 +90,7 @@ export class TodoService {
     })
   }
 
-  public async addTodo(id: any, name: any, level: any, isDone: any) {
+  public addTodo(id: any, name: any, level: any, isDone: any) {
 
     this.id = id;
     this.name = name;
@@ -112,7 +112,7 @@ export class TodoService {
 
     const path = 'https://localhost:44332/api/v1/todos';
 
-    await this.http.post(path, formData, this.getHeaders()).subscribe((data) => {
+    this.http.post(path, formData, this.getHeaders()).subscribe((data) => {
       let result: any = {}
       result = data;
 
